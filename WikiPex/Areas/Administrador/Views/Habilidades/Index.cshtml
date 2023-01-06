@@ -1,0 +1,39 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model WikiPex.Areas.Administrador.Models.IndexViewModel
+@{
+    Layout = "_LayoutAdmin";
+}
+<h1>Administrar Habilidades</h1>
+
+<section class="listado">
+    <a id="lnkNueva" class="mark" href="~/Administrador/Habilidades/Agregar">
+        <h1>Nuevas habilidades...</h1>
+        <div class="image">
+            <img src="~/Imagenes/addb.png" />
+        </div>
+        <h2></h2>
+        <h2></h2>
+        <div class="botones">
+            <img src="~/Imagenes/add.png" />
+        </div>
+    </a>
+
+    @if (Model.Habilidades != null)
+    {
+        @foreach (var item in Model.Habilidades)
+        {
+            <div class="card">
+                <h1>@item.NombreTactica</h1>
+                <h2>@item.NombrePasiva</h2>
+                <div class="image">
+
+                    <img src="~/Imagenes/Personajes/no-disponible.png" />
+                </div>
+                <div class="botones">
+                    <a href="~/Administrador/Habilidades/Editar/@(item.IdHabilidades)" class="btnEditar"></a>
+                    <a href="~/Administrador/Habilidades/Eliminar/@(item.IdHabilidades)" class="btnBorrar"></a>
+                </div>
+            </div>
+        }
+    }
+</section>

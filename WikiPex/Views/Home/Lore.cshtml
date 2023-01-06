@@ -1,0 +1,110 @@
+﻿@model WikiPex.Models.ViewModels.LoreViewModel
+@{
+    Layout = "_Layout";
+    var ruta = Directory.GetCurrentDirectory();
+    ruta = ruta.Replace("\\", "/");
+    List<string> MeVanaReganar = new List<string>();
+}
+@if (Model != null && Model.Personaje != null)
+{
+    @foreach (var item in Model.Personaje)
+    {
+        <div class="contenedorpersonaje">
+            <div class="prueba">
+                <img style="width:1455px;height: 1435px;object-fit: contain;" src="~/Imagenes/Habilidades/@(item.Nombre.ToLower())lore.jpg" />
+            </div>
+            <div class="personajelore">
+                <p>@item.Frase</p>
+                <h1>@item.Nombre</h1>
+                <p>@item.Seudonimo</p>
+                <p>
+                    @item.Historia
+                </p>
+                <table>
+                    <tr>
+                        <td>Nombre real</td>
+                        <td>@item.Nombrereal</td>
+                    </tr>
+                    <tr>
+                        <td>Edad</td>
+                        <td>@item.Edad</td>
+                    </tr>
+                    <tr>
+                        <td>Planeta natal</td>
+                        <td>@item.Planetanatal</td>
+                    </tr>
+                    <tr>
+                        <td>Habilidad táctica</td>
+                        <td>@item.IdHabilidadNavigation?.NombreTactica</td>
+                    </tr>
+                    <tr>
+                        <td>HABILIDAD PASIVA</td>
+                        <td>@item.IdHabilidadNavigation?.NombrePasiva</td>
+                    </tr>
+                    <tr>
+                        <td>Habilidad definitiva</td>
+                        <td>@item.IdHabilidadNavigation?.NombreDefinitiva</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        ruta = ruta + "/Imagenes/" + item.Nombre.ToLower() + "habilidadlore.jpg";
+        @if (!File.Exists(ruta))
+            ruta = $"/Imagenes/Habilidades/ashhabilidadlore.jpg";
+        else
+            ruta = $"/Imagenes/Habilidades/{item.Nombre.ToLower()}habilidadlore.jpg";
+        MeVanaReganar.Add(item.Nombre.ToLower());
+        MeVanaReganar.Add(item.Url);
+    }
+    @if (Model.PersonajeHabilidades != null)
+    {
+        <div class="contenedorhab" lang="es" style="background-image: url(@(ruta));">
+            @foreach (var item in Model.PersonajeHabilidades)
+            {
+                <div>
+                    <img src="~/Imagenes/Habilidades/@(MeVanaReganar[0])h1.png" />
+                    <h3>HABILIDAD TÁCTICA</h3>
+                    <h2>@(item.NombreTactica)</h2>
+                    <p>@item.DescripcionTactica</p>
+                </div>
+                break;
+            }
+            @foreach (var item in Model.PersonajeHabilidades)
+            {
+                <div>
+                    <img src="~/Imagenes/Habilidades/@(MeVanaReganar[0])h2.png" />
+                    <h3>HABILIDAD PASIVA</h3>
+                    <h2>@(item.NombrePasiva)</h2>
+                    <p>@item.DescripcionPasiva</p>
+                </div>
+                break;
+            }
+            @foreach (var item in Model.PersonajeHabilidades)
+            {
+                <div>
+                    <img src="~/Imagenes/Habilidades/@(MeVanaReganar[0])h3.png" />
+                    <h3>HABILIDAD DEFINITIVA</h3>
+                    <h2>@(item.NombreDefinitiva)</h2>
+                    <p>@item.DescripcionDefinitiva</p>
+                </div>
+                break;
+            }
+        </div>
+    }
+    <div class="video">
+        <iframe src="@(MeVanaReganar[1].Replace("watch?v=", "embed/"))" typeof="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+}
+<div class="personajes">
+    @if (Model?.PersonajesSiguientes != null)
+    {
+        @foreach (var item in Model.PersonajesSiguientes)
+        {
+            <a href="~/L/@(item.Nombre)">
+                <img src="~/Imagenes/Personajes/@(item.Nombre).png" />
+                <h2>@(item.Nombre)</h2>
+                <p>@(item.Seudonimo)</p>
+            </a>
+        }
+    }
+</div>

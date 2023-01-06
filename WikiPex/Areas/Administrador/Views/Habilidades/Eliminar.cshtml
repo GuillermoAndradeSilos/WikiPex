@@ -1,0 +1,28 @@
+﻿@model WikiPex.Models.Habilidades
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<form method="post" action="~/administrador/habilidades/eliminar">
+    <div>
+        <h1>Eliminar Habilidades</h1>
+
+        <input type="hidden" id="id" asp-for="IdHabilidades" />
+        <input type="hidden" id="id" asp-for="NombreTactica" />
+        <input type="hidden" id="id" asp-for="NombrePasiva" />
+        <input type="hidden" id="id" asp-for="NombreDefinitiva" />
+        <input type="hidden" id="id" asp-for="DescripcionTactica" />
+        <input type="hidden" id="id" asp-for="DescripcionPasiva" />
+        <input type="hidden" id="id" asp-for="DescripcionDefinitiva" />
+        <p>¿Está seguro de eliminar las habilidades:"<span id="nombreCategoria">@(Model.NombreTactica),@(Model.NombrePasiva),@(Model.NombreDefinitiva)</span>"?</p>
+
+        <div class="botones">
+            <p id="error">
+                @Html.ValidationSummary()
+            </p>
+            <input type="submit" value="Si" id="btnSi" />
+            <a href="~/administrador/habilidades"><input type="button" value="No" id="btnNo" formnovalidate="formnovalidate" /></a>
+        </div>
+    </div>
+</form>

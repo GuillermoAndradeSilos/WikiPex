@@ -1,0 +1,14 @@
+﻿body {
+}
+
+.contenedorlogin {
+    position: relative;
+    text-align: center;
+}
+
+.pruebalogindiv {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+}

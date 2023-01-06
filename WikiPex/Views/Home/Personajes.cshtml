@@ -1,0 +1,22 @@
+﻿@model WikiPex.Models.ViewModels.PersonajesViewModel
+
+@{
+    Layout = "_Layout";
+}
+<div class="inicio" style="padding-top:10%">
+    <img src="~/Imagenes/PersonajesLogoInicial.svg" />
+    <h1>CONOCE A LAS LEYENDAS</h1>
+    <p>Para llegar a ser una leyenda se necesita sangre fría, talento y mucha suerte. Elige a tu favorita y aprende cómo usar sus habilidades únicas para ayudar a tu pelotón.</p>
+</div>
+<div class="personajes">
+    @if (Model.Personajes != null)
+        @foreach (var item in Model.Personajes)
+        {
+            <a href="~/L/@(item.Nombre)">
+                <img src="~/Imagenes/Personajes/@(item.Nombre.ToLower()).png" />
+                <h2>@(item.Nombre)</h2>
+                <p>@(item.Seudonimo)</p>
+                <span class="material-symbols-outlined">arrow_circle_right</span>
+            </a>
+        }
+</div>

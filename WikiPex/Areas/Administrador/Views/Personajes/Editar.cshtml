@@ -1,0 +1,56 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model WikiPex.Areas.Administrador.Models.PersonajesViewModel
+@{
+    Layout = "_LayoutAdmin";
+}
+<form method="post" action="~/administrador/personajes/editar" enctype="multipart/form-data">
+    <input type="hidden" id="idPersonaje" asp-for="Personajes.Id" />
+    <div>
+        <h1>Editar Personaje</h1>
+        <label>Nombre:</label>
+        <input type="text" id="txtNombre" required="required" asp-for="Personajes.Nombre" />
+        <label>Frase:</label>
+        <input type="text" id="txtFrase" required="required" asp-for="Personajes.Frase" />
+        <label>Seudonimo:</label>
+        <input type="text" id="txtSeudonimo" required="required" asp-for="Personajes.Seudonimo" />
+        <label>Historia:</label>
+        <textarea rows="2" cols="20" id="txtHistoria" required="required" asp-for="Personajes.Historia"></textarea>
+        <label>Nombre Real:</label>
+        <input type="text" id="txtNombreReal" required="required" asp-for="Personajes.Nombrereal" />
+        <label>Edad:</label>
+        <input type="text" id="txtEdad" required="required" asp-for="Personajes.Edad" />
+        <label>Planeta Natal:</label>
+        <input type="text" id="txtPlanetaNatal" required="required" asp-for="Personajes.Planetanatal" />
+        <label>IdHabilidad:</label>
+        <input type="text" id="txtPasiva" asp-for="Personajes.IdHabilidad" />
+        <label>Url del video:</label>
+        <input type="text" id="txtUrl" required="required" asp-for="Personajes.Url" />
+        <label>Imagen Personaje:</label><br />
+        <input type="file" id="fileUpload1" accept="image/jpg" asp-for="ImagenPersonaje" />
+        <label>Imagen Lore:</label>
+        <input type="file" id="fileUpload1" accept="image/jpg" asp-for="ImagenLore" />
+        <img id="imagePreview" src="~/Imagenes/Personajes/no-disponible.png" alt="Vista previa de la imagen" />
+        @Html.ValidationSummary()
+        <div class="botones">
+            <p id="error"></p>
+            <a href="~/administrador/index"><input type="submit" value="Agregar" id="btnAgregar" /></a>
+            <a href="~/administrador/index"><input type="button" value="Cancelar" id="btnCancelar" formnovalidate="formnovalidate" /></a>
+        </div>
+    </div>
+</form>
+<script>
+    function mostrarImagen(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $(document).ready(function () {
+        $("#fileUpload1").change(function () {
+            mostrarImagen(this);
+        });
+    });
+</script>

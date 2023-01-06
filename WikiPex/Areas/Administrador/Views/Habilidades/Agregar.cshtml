@@ -1,0 +1,60 @@
+﻿@using WikiPex.Areas.Administrador.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model WikiPex.Areas.Administrador.Models.HabilidadesViewModel
+@{
+    Layout = "_LayoutAdmin";
+}
+<form method="post" action="~/administrador/habilidades/agregar" enctype="multipart/form-data">
+    <div>
+        <h1>Agregar Habilidades</h1>
+        <label>Personaje:</label>
+        <input type="text" id="txtNombrePersonaje" required="required" asp-for="@(Model.PersonajeNombre)" />
+        
+        <label>Nombre tactica:</label>
+        <input type="text" id="txtTactica" required="required" asp-for="@(Model.NombreTactica)" />
+        <label>Descripción:</label>
+        <textarea rows="2" cols="20" id="txtDescripcion" required="required" asp-for="@(Model.DescripcionTactica)"></textarea>
+        <label>Imagen:</label>
+        <input type="file" id="fileUpload1" accept="image/jpg" asp-for="ImagenTactica" />
+        <img id="imagePreview" src="~/Imagenes/Personajes/no-disponible.png" alt="Vista previa de la imagen" />
+
+        <label>Nombre pasiva:</label>
+        <input type="text" id="txtPasiva" required="required" asp-for="@(Model.NombrePasiva)" />
+        <label>Descripción:</label>
+        <textarea rows="2" cols="20" id="txtPasiva" required="required" asp-for="@(Model.DescripcionPasiva)"></textarea>
+        <label>Imagen:</label>
+        <input type="file" id="fileUpload1" accept="image/jpg" asp-for="ImagenPasiva" />
+        <img id="imagePreview" src="~/Imagenes/Personajes/no-disponible.png" alt="Vista previa de la imagen" />
+
+        <label>Nombre definitiva:</label>
+        <input type="text" id="txtDefinitiva" required="required" asp-for="@(Model.NombreDefinitiva)" />
+        <label>Descripción:</label>
+        <textarea rows="2" cols="20" id="txtDescripcion" required="required" asp-for="@(Model.DescripcionDefinitiva)"></textarea>
+        <label>Imagen:</label>
+        <input type="file" id="fileUpload1" accept="image/jpg" asp-for="ImagenDefinitiva" />
+        <img id="imagePreview" src="~/Imagenes/Personajes/no-disponible.png" alt="Vista previa de la imagen" />
+        
+        @Html.ValidationSummary()
+        <div class="botones">
+            <p id="error"></p>
+            <a href="~/administrador/index"><input type="submit" value="Agregar" id="btnAgregar" /></a>
+            <a href="~/administrador/index"><input type="button" value="Cancelar" id="btnCancelar" formnovalidate="formnovalidate" /></a>
+        </div>
+    </div>
+</form>
+<script>
+    function mostrarImagen(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $(document).ready(function () {
+        $("#fileUpload1").change(function () {
+            mostrarImagen(this);
+        });
+    });
+</script>

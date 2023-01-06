@@ -1,0 +1,40 @@
+﻿@{
+    //No olvidar que aqui  pasare que estilos usar... aun no se como xd
+    //osea si, con el viewbag pero no se si funcione
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Apex Legends </title>
+    <link href="~/@ViewBag.Estilos" rel="stylesheet" />
+    @if (ViewBag.Estilos == "EstiloPersonajes.css")
+    {
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    }
+</head>
+<body>
+    <main>
+        <div class="menu">
+            <a href="~/PaginaPrincipal"><img src="~/Imagenes/LogoNav.svg" /></a>
+            <a href="~/PaginaPrincipal"><h1>Principal</h1></a>
+            <a href="~/Mapas"><h1>Mapas</h1></a>
+            <a href="~/Personajes"><h1>Personajes</h1></a>
+            <a href="https://store.steampowered.com/app/1172470/Apex_Legends/?utm_medium=organic&utm_source=franchise_web&utm_content=navlink"><h1>DESCARGA GRATUITA*</h1></a>
+        </div>
+        @RenderBody()
+    </main>
+</body>
+<footer>
+    <div class="gridfooter">
+        <img src="~/Imagenes/FooterImg.png" />
+        <p>EXPLORAR JUEGOS</p>
+        <p>ACERCA DE</p>
+        <p>ASISTENCIA</p>
+        <p>COMPRA EN ORIGIN</p>
+        <p class="renglon21">Privacidad y avisos legales</p>
+        <p class="renglon22">Acuerdo de usuario</p>
+        <p class="renglon3">Política de privacidad y directiva de cookies (tus derechos de privacidad)</p>
+        <p class="renglon4">© 2022 Electronic Arts Inc.</p>
+    </div>
+</footer>
+</html>
